@@ -2,10 +2,12 @@ use minigrep;
 use std::{env, process};
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
-
-    let config = minigrep::Config::new(&args).unwrap_or_else(|err| {
-        eprintln!("Problem parsing arguments: {}.\nargs: {:#?}", err, args);
+    let config = minigrep::Config::new(env::args()).unwrap_or_else(|err| {
+        eprintln!(
+            "Problem parsing arguments: {}.\nargs: {:#?}",
+            err,
+            env::args()
+        );
         process::exit(1);
     });
 
